@@ -1,6 +1,7 @@
 const initialState = {
     age: 21,
-    history: []
+    history: [],
+    loading: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -13,7 +14,8 @@ const reducer = (state = initialState, action) => {
                     {
                         id: Math.random(),
                         age: state.age + action.value
-                    })
+                    }),
+                loading:false
             }
         case "AGE_DOWN":
             return {
@@ -30,6 +32,14 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 history: state.history.filter(element => element.id !== action.key)
             }
+
+        case "LOADING":
+            console.log('logo');
+            return {
+                ...state,
+                loading: true
+            }
+        
         default:
             return state;
     }
