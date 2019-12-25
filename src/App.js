@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import "./App.css";
-import * as actionCreator from './store/actions/actions';
-import logo from './logo.svg';
 class App extends React.Component {
+
   render() {
     return (
       <div style={{ textAlign: 'center' }}>
@@ -25,7 +24,6 @@ class App extends React.Component {
             }
           </ul>
         </div>
-        {this.props.loading && <img src={logo} className="App-logo" alt="logo" />}
       </div>
     );
   }
@@ -35,16 +33,15 @@ class App extends React.Component {
 const mapStateToProps = (state) => {
   return {
     age: state.age,
-    history: state.history,
-    loading: state.loading
+    history: state.history
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onAgeUp: () => dispatch(actionCreator.ageUp(1)),
-    onAgeDown: () => dispatch(actionCreator.ageDown(1)),
-    onDeleteItem: (id) => dispatch(actionCreator.deleteItem(id))
+    onAgeUp: () => dispatch({ type: 'AGE_UP', value: 1 }),
+    onAgeDown: () => dispatch({ type: 'AGE_DOWN', value: 1 }),
+    onDeleteItem: (id) => dispatch({ type: 'DELETE_ITEM', key: id })
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);
