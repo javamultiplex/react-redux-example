@@ -5,7 +5,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case "AGE_UP":
+        case "AGE_UP_ASYNC":
             return {
                 ...state,
                 age: state.age + action.value,
